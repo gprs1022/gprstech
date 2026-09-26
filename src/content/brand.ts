@@ -1,4 +1,9 @@
+import brandLogo from '../assets/brand/logo.png';
+import brandBanner from '../assets/brand/banner.png';
+
 export const BRAND = {
+  logo: brandLogo,
+  banner: brandBanner,
   name: 'GPRS Tech',
   positioning: 'Technology & Creative Studio',
   founder: {

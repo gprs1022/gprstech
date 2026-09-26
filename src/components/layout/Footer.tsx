@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BRAND } from '../../content/brand';
 import { ArrowUpRight } from 'lucide-react';
+import brandLogo from '../../assets/brand/logo.png';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
@@ -33,7 +34,7 @@ export const Footer: React.FC = () => {
         {/* Brand Column */}
         <div className={styles.footerBrandCol}>
           <Link to="/" className={styles.brandLink}>
-            <img src="/logo.png" alt="GPRS Tech Logo" className={styles.footerLogo} width="40" height="40" />
+            <img src={brandLogo} alt="GPRS Tech Logo" className={styles.footerLogo} width="40" height="40" />
             <span className={styles.footerBrandName}>
               GPRS <span className="text-gradient-brand">TECH</span>
             </span>

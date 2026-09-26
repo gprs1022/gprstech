@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Smartphone, Globe, Film, ArrowRight, Sparkles } from 'lucide-react';
+import brandLogo from '../../assets/brand/logo.png';
 import styles from './Header.module.css';
 
 export const Header: React.FC = () => {
@@ -44,7 +45,7 @@ export const Header: React.FC = () => {
       <div className={`container ${styles.headerContainer}`}>
         {/* Brand Logo & Name */}
         <Link to="/" className={styles.brand} aria-label="GPRS Tech Home">
-          <img src="/logo.png" alt="GPRS Tech Logo" className={styles.logoImg} width="42" height="42" />
+          <img src={brandLogo} alt="GPRS Tech Logo" className={styles.logoImg} width="42" height="42" />
           <div className={styles.brandText}>
             <span className={styles.brandTitle}>
               GPRS <span className={styles.brandAccent}>TECH</span>

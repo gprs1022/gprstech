@@ -10,6 +10,7 @@ import {
   Film
 } from 'lucide-react';
 import styles from './AboutPage.module.css';
+import brandLogo from '../../assets/brand/logo.png';
 
 export const AboutPage: React.FC = () => {
   const principles = [
@@ -85,7 +86,7 @@ export const AboutPage: React.FC = () => {
               </p>
             </div>
             <div className={styles.originLogoFrame}>
-              <img src="/logo.png" alt="GPRS Tech Authoritative Logo" className={styles.originLogoImg} />
+              <img src={brandLogo} alt="GPRS Tech Authoritative Logo" className={styles.originLogoImg} />
             </div>
           </div>
         </section>
@@ -101,7 +102,7 @@ export const AboutPage: React.FC = () => {
           <div className={`surface-card ${styles.founderBioCard}`}>
             <div className={styles.founderBioHeader}>
               <div className={styles.founderAvatarWrap}>
-                <img src="/logo.png" alt="Pradeep Singh" className={styles.avatarImg} />
+                <img src={brandLogo} alt="Pradeep Singh" className={styles.avatarImg} />
               </div>
               <div className={styles.founderHeaderInfo}>
                 <h3 className={styles.founderName}>{BRAND.founder.name}</h3>

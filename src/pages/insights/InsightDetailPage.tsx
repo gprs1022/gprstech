@@ -4,6 +4,7 @@ import { getInsightBySlug, INSIGHTS } from '../../content/insights';
 import { SEO } from '../../components/seo/SEO';
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs';
 import { Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import brandLogo from '../../assets/brand/logo.png';
 import styles from './Insights.module.css';
 
 export const InsightDetailPage: React.FC = () => {
@@ -34,7 +35,7 @@ export const InsightDetailPage: React.FC = () => {
 
             <div className={styles.articleMetaBar}>
               <div className={styles.authorBox}>
-                <img src="/logo.png" alt={insight.author} className={styles.authorImg} />
+                <img src={brandLogo} alt={insight.author} className={styles.authorImg} />
                 <div>
                   <span className={styles.authorName}>{insight.author}</span>
                   <span className={styles.authorTitle}>Founder, GPRS Tech</span>

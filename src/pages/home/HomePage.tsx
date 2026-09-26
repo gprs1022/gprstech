@@ -15,6 +15,7 @@ import {
   Layers
 } from 'lucide-react';
 import styles from './HomePage.module.css';
+import brandLogo from '../../assets/brand/logo.png';
 
 export const HomePage: React.FC = () => {
   const featuredProjects = getPublishableProjects().filter((p) => p.featured).slice(0, 3);
@@ -295,7 +296,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <div className={`surface-card ${styles.founderCard}`}>
             <div className={styles.founderLeft}>
-              <img src="/logo.png" alt="Founder Pradeep Singh GPRS Tech" className={styles.founderLogoImg} />
+              <img src={brandLogo} alt="Founder Pradeep Singh GPRS Tech" className={styles.founderLogoImg} />
               <div className={styles.founderBadgeBox}>
                 <span className="badge badge-tech">Founder-Led Craft</span>
               </div>

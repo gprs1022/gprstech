@@ -1,4 +1,5 @@
 import type { Project } from '../types';
+import brandLogo from '../assets/brand/logo.png';
 
 export const PROJECTS: Project[] = [
   {
@@ -55,7 +56,7 @@ export const PROJECTS: Project[] = [
       },
       {
         type: 'image',
-        url: '/logo.png',
+        url: brandLogo,
         caption: 'Authoritative circular GPRS Tech 3D mark combining electric blue, organic white, and vivid emerald-to-lime green.'
       }
     ]
