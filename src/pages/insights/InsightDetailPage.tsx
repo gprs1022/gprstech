@@ -61,7 +61,7 @@ export const InsightDetailPage: React.FC = () => {
 
           {/* Article Body */}
           <div className={styles.articleBody}>
-            {insight.content.map((paragraph, idx) => (
+            {insight.content.map((paragraph: string, idx: number) => (
               <p key={idx} className={styles.articleParagraph}>
                 {paragraph}
               </p>
@@ -71,7 +71,7 @@ export const InsightDetailPage: React.FC = () => {
           {/* Tags */}
           <div className={styles.articleTags}>
             <span className={styles.tagLabel}>Topics:</span>
-            {insight.tags.map((tag, idx) => (
+            {insight.tags.map((tag: string, idx: number) => (
               <span key={idx} className={styles.tagPill}>
                 #{tag}
               </span>

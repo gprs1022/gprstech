@@ -102,7 +102,7 @@ export const InsightsPage: React.FC = () => {
                 <p className={styles.cardExcerpt}>{insight.excerpt}</p>
 
                 <div className={styles.tagRow}>
-                  {insight.tags.map((t, idx) => (
+                  {insight.tags.map((t: string, idx: number) => (
                     <span key={idx} className={styles.tag}>
                       #{t}
                     </span>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BRAND } from '../../content/brand';
 import { SEO } from '../../components/seo/SEO';
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs';
+import { CONTACT_CONFIG, INQUIRY_TYPES, BUDGET_TIERS } from '../../content/contact';
 import {
   Send,
   CheckCircle,
@@ -12,7 +13,9 @@ import {
   Globe,
   Film,
   ArrowRight,
-  Mail
+  Mail,
+  MessageSquare,
+  Info
 } from 'lucide-react';
 import styles from './ContactPage.module.css';
 
@@ -21,8 +24,8 @@ export const ContactPage: React.FC = () => {
     name: '',
     email: '',
     company: '',
-    service: 'App Development',
-    budget: '$5,000 - $15,000',
+    service: 'Flutter / Mobile App Development',
+    budget: '$3,000 – $10,000 / Production Build',
     timeline: '1 - 2 Months',
     message: ''
   });
@@ -34,44 +37,50 @@ export const ContactPage: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Client-side validation
+  const validate = () => {
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setStatus('error');
-      setErrorMessage('Please fill in all required fields (Name, Email, and Project Description).');
-      return;
+      setErrorMessage('Please fill in all required fields (Name, Email, and Project Overview).');
+      return false;
     }
-
     if (!formData.email.includes('@') || !formData.email.includes('.')) {
       setStatus('error');
       setErrorMessage('Please enter a valid email address.');
-      return;
+      return false;
     }
+    return true;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
 
     setStatus('submitting');
     setErrorMessage('');
 
-    // Simulate reliable dispatch with fallback mailto link
     setTimeout(() => {
       setStatus('success');
     }, 800);
   };
 
-  const handleMailtoFallback = () => {
-    const subject = encodeURIComponent(`Project Inquiry: ${formData.service} from ${formData.name}`);
+  const handleOpenEmailApp = () => {
+    const subject = encodeURIComponent(`Project Inquiry: ${formData.service} — ${formData.name || 'New Client'}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nService: ${formData.service}\nBudget: ${formData.budget}\nTimeline: ${formData.timeline}\n\nProject Details:\n${formData.message}`
+      `Hello GPRS Tech Studio & Pradeep,\n\nName: ${formData.name || '[Your Name]'}\nEmail: ${formData.email || '[Your Email]'}\nCompany: ${formData.company || 'N/A'}\nService: ${formData.service}\nBudget Range: ${formData.budget}\nTarget Timeline: ${formData.timeline}\n\nProject Scope & Goals:\n${formData.message || '[Describe your project here]'}\n\nLooking forward to your response!`
     );
-    window.location.href = `mailto:gprspradeep@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_CONFIG.businessEmail}?subject=${subject}&body=${body}`;
+  };
+
+  const getWhatsAppUrl = () => {
+    const message = `Hello GPRS Tech Studio! My name is ${formData.name || 'a prospective client'}.\nI am interested in: ${formData.service}.\nBudget Tier: ${formData.budget}.\nProject Overview: ${formData.message || 'I would like to discuss a project with Pradeep Singh.'}`;
+    return `https://wa.me/${CONTACT_CONFIG.whatsappNumberInternational}?text=${encodeURIComponent(message)}`;
   };
 
   return (
     <div className={styles.page}>
       <SEO
-        title="Contact & Project Inquiry | GPRS Tech"
-        description="Start a project with GPRS Tech. Tell us about your mobile app, website, or animation vision and receive a direct founder response within 24-48 hours."
+        title="Contact & Project Discovery | GPRS Tech Studio"
+        description="Initiate a project inquiry with GPRS Tech. Direct communication with founder Pradeep Singh via online brief, direct email, or instant WhatsApp."
       />
 
       <div className="container">
@@ -79,21 +88,47 @@ export const ContactPage: React.FC = () => {
 
         {/* Hero */}
         <section className={styles.contactHero}>
-          <span className="badge badge-tech">Start The Conversation</span>
+          <span className="badge badge-tech">Direct Founder Access</span>
           <h1 className={styles.heroTitle}>
             Let&rsquo;s Build Your Product or <br />
             <span className="text-gradient-brand">Bring Your Story to Life.</span>
           </h1>
           <p className={styles.heroSub}>
-            Whether you need a full-scale mobile app, a modern web platform, or cinematic 3D animation, tell us what you have in mind. Founder Pradeep Singh personally reviews all qualified inquiries.
+            Whether you need a high-performance Flutter mobile application, a scalable web platform, or cinematic 3D animation, we are ready to collaborate. Every qualified inquiry receives personal review and response from founder Pradeep Singh.
           </p>
         </section>
+
+        {/* Quick Contact Action Banner */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '3.5rem' }}>
+          <div className="surface-card" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', borderLeft: '4px solid var(--color-tech-cyan)' }}>
+            <Mail size={28} style={{ color: 'var(--color-tech-cyan)', flexShrink: 0 }} />
+            <div>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>Direct Email</span>
+              <a href={`mailto:${CONTACT_CONFIG.businessEmail}`} style={{ display: 'block', color: '#FFFFFF', fontWeight: 600, textDecoration: 'none', fontSize: '1rem', marginTop: '0.15rem' }}>
+                {CONTACT_CONFIG.businessEmail}
+              </a>
+            </div>
+          </div>
+
+          <div className="surface-card" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', borderLeft: '4px solid var(--color-creative-green)' }}>
+            <MessageSquare size={28} style={{ color: 'var(--color-creative-green)', flexShrink: 0 }} />
+            <div>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', fontWeight: 700 }}>WhatsApp Inquiry</span>
+              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" style={{ display: 'block', color: '#FFFFFF', fontWeight: 600, textDecoration: 'none', fontSize: '1rem', marginTop: '0.15rem' }}>
+                {CONTACT_CONFIG.whatsappDisplayNumber}
+              </a>
+            </div>
+          </div>
+        </div>
 
         <div className={styles.contactGrid}>
           {/* Left Column: Form */}
           <div className={`surface-card ${styles.formCard}`}>
-            <h2 className={styles.formHeading}>Project Discovery Form</h2>
-            <p className={styles.formSub}>Fill out the parameters below to help us prepare for an effective discovery conversation.</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <h2 className={styles.formHeading} style={{ margin: 0 }}>Project Discovery Brief</h2>
+              <span className="badge badge-tech" style={{ fontSize: '0.72rem' }}>Direct Discovery</span>
+            </div>
+            <p className={styles.formSub}>Fill out the parameters below or use the instant Email/WhatsApp buttons to initiate contact.</p>
 
             {status === 'success' ? (
               <div className={styles.successState}>
@@ -102,13 +137,23 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <h3>Inquiry Received!</h3>
                 <p>
-                  Thank you, <strong>{formData.name}</strong>. Your project brief has been recorded. Founder Pradeep Singh will review your requirements and reach out via <strong>{formData.email}</strong> within 24 to 48 hours.
+                  Thank you, <strong>{formData.name}</strong>. Your project brief has been recorded. Founder Pradeep Singh will review your parameters and respond directly via <strong>{formData.email}</strong> within 24 to 48 hours.
                 </p>
-                <div className={styles.successActions}>
-                  <button type="button" onClick={handleMailtoFallback} className="btn btn-secondary">
-                    <span>Send Direct Email Copy</span>
+                <div className={styles.successActions} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', maxWidth: '380px', margin: '1.5rem auto 0 auto' }}>
+                  <button type="button" onClick={handleOpenEmailApp} className="btn btn-secondary" style={{ width: '100%' }}>
                     <Mail size={15} />
+                    <span>Open in Email App (Backup Copy)</span>
                   </button>
+                  <a
+                    href={getWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{ width: '100%' }}
+                  >
+                    <MessageSquare size={15} />
+                    <span>Follow Up on WhatsApp</span>
+                  </a>
                   <button
                     type="button"
                     onClick={() => {
@@ -117,13 +162,14 @@ export const ContactPage: React.FC = () => {
                         name: '',
                         email: '',
                         company: '',
-                        service: 'App Development',
-                        budget: '$5,000 - $15,000',
+                        service: 'Flutter / Mobile App Development',
+                        budget: '$3,000 – $10,000 / Production Build',
                         timeline: '1 - 2 Months',
                         message: ''
                       });
                     }}
                     className="btn btn-outline"
+                    style={{ width: '100%', marginTop: '0.5rem' }}
                   >
                     <span>Submit Another Inquiry</span>
                   </button>
@@ -201,11 +247,11 @@ export const ContactPage: React.FC = () => {
                       onChange={handleChange}
                       className={styles.select}
                     >
-                      <option value="App Development">Mobile App (Flutter / Android)</option>
-                      <option value="Website / Web App">Website / Web Application</option>
-                      <option value="Animation & Video">2D/3D Animation & Video Editing</option>
-                      <option value="Combined Tech + Creative">Combined Tech + Creative Package</option>
-                      <option value="Other / Unsure">Custom Software / Other</option>
+                      {INQUIRY_TYPES.map((t) => (
+                        <option key={t.value} value={t.label}>
+                          {t.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -223,11 +269,11 @@ export const ContactPage: React.FC = () => {
                       onChange={handleChange}
                       className={styles.select}
                     >
-                      <option value="Under $5,000">Under $5,000</option>
-                      <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-                      <option value="$15,000 - $30,000">$15,000 - $30,000</option>
-                      <option value="$30,000+">$30,000+</option>
-                      <option value="Not Yet Defined">Not Yet Defined / Need Guidance</option>
+                      {BUDGET_TIERS.map((b) => (
+                        <option key={b.value} value={b.label}>
+                          {b.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -261,31 +307,61 @@ export const ContactPage: React.FC = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us what you are looking to build or create, key features, and any reference apps or videos..."
+                    placeholder="Tell us what you are looking to build or create, key features, platforms, and any visual reference apps or reels..."
                     className={styles.textarea}
                     required
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="btn btn-primary"
-                  style={{ width: '100%', padding: '0.9rem', fontSize: '1.05rem' }}
-                >
-                  {status === 'submitting' ? (
-                    <span>Submitting Brief...</span>
-                  ) : (
-                    <>
-                      <span>Send Project Inquiry</span>
-                      <Send size={16} />
-                    </>
-                  )}
-                </button>
+                {/* Submission Options Button Group */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+                  <button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="btn btn-primary"
+                    style={{ width: '100%', padding: '0.85rem', fontSize: '1rem' }}
+                  >
+                    {status === 'submitting' ? (
+                      <span>Recording Project Brief...</span>
+                    ) : (
+                      <>
+                        <span>Submit Brief Online</span>
+                        <Send size={15} />
+                      </>
+                    )}
+                  </button>
 
-                <p className={styles.formPrivacyNote}>
-                  We respect your privacy. No spam, no automated cold emails. Your information is strictly used to evaluate your project.
-                </p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                    <button
+                      type="button"
+                      onClick={handleOpenEmailApp}
+                      className="btn btn-secondary"
+                      style={{ padding: '0.75rem', fontSize: '0.85rem' }}
+                    >
+                      <Mail size={14} />
+                      <span>Open in Email App</span>
+                    </button>
+
+                    <a
+                      href={getWhatsAppUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary"
+                      style={{ padding: '0.75rem', fontSize: '0.85rem', color: 'var(--color-creative-green)' }}
+                    >
+                      <MessageSquare size={14} />
+                      <span>Inquire via WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* WhatsApp & Email Guidance Note */}
+                <div style={{ marginTop: '1rem', padding: '0.75rem', background: 'var(--bg-surface)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                  <Info size={15} style={{ color: 'var(--color-tech-cyan)', flexShrink: 0, marginTop: '2px' }} />
+                  <span>
+                    <strong>Note:</strong> Clicking &ldquo;Inquire via WhatsApp&rdquo; will open WhatsApp with your project parameters pre-filled. Please remember to press <strong>&ldquo;Send&rdquo;</strong> inside WhatsApp to dispatch your message.
+                  </span>
+                </div>
               </form>
             )}
           </div>
@@ -322,7 +398,7 @@ export const ContactPage: React.FC = () => {
 
             {/* Verified Public Channels */}
             <div className={`surface-card ${styles.infoCard}`}>
-              <h3 className={styles.infoCardTitle}>Verified Channels</h3>
+              <h3 className={styles.infoCardTitle}>Verified Direct Channels</h3>
               <p className={styles.infoCardSub}>Prefer direct messaging? Reach out through our official profiles:</p>
               <div className={styles.channelLinks}>
                 <a href={BRAND.socials.linkedin} target="_blank" rel="noopener noreferrer" className={styles.channelLink}>
@@ -337,8 +413,8 @@ export const ContactPage: React.FC = () => {
                   <span>Founder Portfolio (Pradeep Singh)</span>
                   <ExternalLink size={14} />
                 </a>
-                <a href={BRAND.socials.youtube} target="_blank" rel="noopener noreferrer" className={styles.channelLink}>
-                  <span>YouTube Channel</span>
+                <a href={BRAND.socials.creativeRef} target="_blank" rel="noopener noreferrer" className={styles.channelLink}>
+                  <span>ToonAcharya Animation (YouTube)</span>
                   <ExternalLink size={14} />
                 </a>
               </div>
@@ -346,7 +422,7 @@ export const ContactPage: React.FC = () => {
 
             {/* Category Quick Links */}
             <div className={`surface-card ${styles.infoCard}`}>
-              <h3 className={styles.infoCardTitle}>Browse Past Work While You Wait</h3>
+              <h3 className={styles.infoCardTitle}>Browse Portfolios While You Wait</h3>
               <div className={styles.quickCategoryLinks}>
                 <Link to="/portfolio/apps" className={styles.quickCat}>
                   <Smartphone size={16} className={styles.catIconTech} />

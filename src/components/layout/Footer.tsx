@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BRAND } from '../../content/brand';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, MessageSquare, Mail } from 'lucide-react';
 import brandLogo from '../../assets/brand/logo.png';
+import { CONTACT_CONFIG } from '../../content/contact';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
@@ -17,7 +18,7 @@ export const Footer: React.FC = () => {
             <span className="badge badge-tech">Start Your Journey</span>
             <h3 className={styles.footerCtaTitle}>Have an idea worth building or a story worth telling?</h3>
             <p className={styles.footerCtaSub}>
-              From mobile apps and responsive websites to 2D/3D animation and high-retention video, GPRS Tech is ready to turn your vision into impact.
+              From cross-platform Flutter apps and full-stack web platforms to cinematic 3D animation and high-retention video, GPRS Tech delivers from idea to impact.
             </p>
           </div>
           <div className={styles.footerCtaActions}>
@@ -25,6 +26,15 @@ export const Footer: React.FC = () => {
               <span>Tell Us About Your Project</span>
               <ArrowUpRight size={16} />
             </Link>
+            <a
+              href={`https://wa.me/${CONTACT_CONFIG.whatsappNumberInternational}?text=${encodeURIComponent('Hello GPRS Tech Studio! I would like to inquire about a project.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+            >
+              <MessageSquare size={16} />
+              <span>WhatsApp Us</span>
+            </a>
           </div>
         </div>
       </div>
@@ -50,62 +60,49 @@ export const Footer: React.FC = () => {
               {BRAND.founder.name} <ArrowUpRight size={12} />
             </a>
           </div>
+
+          <div style={{ marginTop: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Mail size={13} style={{ color: 'var(--color-tech-cyan)' }} /> {CONTACT_CONFIG.businessEmail}
+            </span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <MessageSquare size={13} style={{ color: 'var(--color-creative-green)' }} /> {CONTACT_CONFIG.whatsappDisplayNumber}
+            </span>
+          </div>
         </div>
 
-        {/* Column 2: Technology Studio */}
+        {/* Column 2: Studio Services */}
         <div className={styles.footerLinkCol}>
-          <h4 className={styles.colTitle}>Technology Studio</h4>
+          <h4 className={styles.colTitle}>Services</h4>
           <ul className={styles.linkList}>
             <li>
-              <Link to="/services/technology">Mobile App Development</Link>
+              <Link to="/services/technology">Technology Studio</Link>
             </li>
             <li>
-              <Link to="/services/technology">Websites & Web Apps</Link>
+              <Link to="/services/creative">Creative Studio</Link>
             </li>
             <li>
-              <Link to="/services/technology">Custom Software & Tools</Link>
+              <Link to="/services/flutter-app-development">Flutter App Development</Link>
             </li>
             <li>
-              <Link to="/services/technology">UI/UX & Product Design</Link>
+              <Link to="/services/full-stack-web">Full-Stack Web</Link>
             </li>
             <li>
-              <Link to="/services/technology">Practical AI & Automation</Link>
+              <Link to="/services/3d-animation-cgi">3D Animation & CGI</Link>
             </li>
             <li>
-              <Link to="/services/technology">Maintenance & Evolution</Link>
+              <Link to="/technologies">Technologies Stack</Link>
             </li>
           </ul>
         </div>
 
-        {/* Column 3: Creative Studio */}
+        {/* Column 3: Portfolios & Showcase */}
         <div className={styles.footerLinkCol}>
-          <h4 className={styles.colTitle}>Creative Studio</h4>
+          <h4 className={styles.colTitle}>Portfolio</h4>
           <ul className={styles.linkList}>
             <li>
-              <Link to="/services/creative">2D Animation & Characters</Link>
+              <Link to="/portfolio">Portfolio Overview</Link>
             </li>
-            <li>
-              <Link to="/services/creative">3D Animation & Modeling</Link>
-            </li>
-            <li>
-              <Link to="/services/creative">Motion Graphics</Link>
-            </li>
-            <li>
-              <Link to="/services/creative">Explainer & Product Demos</Link>
-            </li>
-            <li>
-              <Link to="/services/creative">YouTube Video Editing</Link>
-            </li>
-            <li>
-              <Link to="/services/creative">Shorts, Reels & Ad Creatives</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4: Studio & Portfolios */}
-        <div className={styles.footerLinkCol}>
-          <h4 className={styles.colTitle}>Portfolios & Info</h4>
-          <ul className={styles.linkList}>
             <li>
               <Link to="/portfolio/apps">App Portfolio</Link>
             </li>
@@ -116,10 +113,29 @@ export const Footer: React.FC = () => {
               <Link to="/portfolio/animation">Animation Portfolio</Link>
             </li>
             <li>
-              <Link to="/about">About & Principles</Link>
+              <Link to="/portfolio/mythos-folklore">Mythos: Echoes of Bharat</Link>
             </li>
             <li>
-              <Link to="/insights">Insights & Breakdown</Link>
+              <Link to="/portfolio/smartagri-iot">SmartAgri IoT Monitor</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4: About & Studio */}
+        <div className={styles.footerLinkCol}>
+          <h4 className={styles.colTitle}>About Studio</h4>
+          <ul className={styles.linkList}>
+            <li>
+              <Link to="/about/company">Company & Vision</Link>
+            </li>
+            <li>
+              <Link to="/about/team">Team & Founder</Link>
+            </li>
+            <li>
+              <Link to="/about/life">Studio Life & Culture</Link>
+            </li>
+            <li>
+              <Link to="/careers">Careers & Openings</Link>
             </li>
             <li>
               <Link to="/contact">Contact & Inquiries</Link>
@@ -127,38 +143,29 @@ export const Footer: React.FC = () => {
           </ul>
         </div>
 
-        {/* Column 5: Verified Socials */}
+        {/* Column 5: Knowledge & Community */}
         <div className={styles.footerLinkCol}>
-          <h4 className={styles.colTitle}>Verified Channels</h4>
-          <ul className={styles.socialList}>
+          <h4 className={styles.colTitle}>Knowledge Hub</h4>
+          <ul className={styles.linkList}>
             <li>
-              <a href={BRAND.socials.linkedin} target="_blank" rel="noopener noreferrer">
-                <span>LinkedIn</span>
-                <ArrowUpRight size={14} />
-              </a>
+              <Link to="/blog">All Blogs & Insights</Link>
             </li>
             <li>
-              <a href={BRAND.socials.x} target="_blank" rel="noopener noreferrer">
-                <span>X (Twitter)</span>
-                <ArrowUpRight size={14} />
-              </a>
+              <Link to="/blog/articles">Articles</Link>
             </li>
             <li>
-              <a href={BRAND.socials.youtube} target="_blank" rel="noopener noreferrer">
-                <span>YouTube Channel</span>
-                <ArrowUpRight size={14} />
-              </a>
+              <Link to="/blog/tutorials">Tutorials & Guides</Link>
+            </li>
+            <li>
+              <Link to="/blog/project-breakdowns">Project Breakdowns</Link>
+            </li>
+            <li>
+              <Link to="/docs">Developer Docs</Link>
             </li>
             <li>
               <a href={BRAND.socials.creativeRef} target="_blank" rel="noopener noreferrer">
-                <span>ToonAcharya Animation</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </li>
-            <li>
-              <a href={BRAND.socials.founderPortfolio} target="_blank" rel="noopener noreferrer">
-                <span>Founder Portfolio</span>
-                <ArrowUpRight size={14} />
+                <span>ToonAcharya 3D</span>
+                <ArrowUpRight size={12} style={{ display: 'inline', marginLeft: '3px' }} />
               </a>
             </li>
           </ul>
@@ -175,7 +182,7 @@ export const Footer: React.FC = () => {
         <div className={styles.bottomLegal}>
           <Link to="/privacy">Privacy Policy</Link>
           <span className={styles.separator}>•</span>
-          <span className={styles.honestStatement}>All project attributions transparently documented</span>
+          <span className={styles.honestStatement}>Truth-in-advertising & verified studio credentials</span>
         </div>
       </div>
     </footer>

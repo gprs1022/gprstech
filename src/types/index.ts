@@ -54,6 +54,7 @@ export interface Project {
 
 export interface ServiceItem {
   id: string;
+  slug?: string;
   studio: StudioType;
   title: string;
   shortDesc: string;
@@ -66,6 +67,12 @@ export interface ServiceItem {
   relevantPortfolioCategory: ProjectCategory;
   iconName: string;
   badge?: string;
+  publishable?: boolean;
+  detailedCase?: {
+    scopeOverview: string;
+    phases: { title: string; desc: string }[];
+    sampleDeliverables: string[];
+  };
 }
 
 export interface CombinedEngagement {
@@ -75,21 +82,6 @@ export interface CombinedEngagement {
   servicesIncluded: string[];
   idealFor: string;
   outcome: string;
-}
-
-export interface Insight {
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string[];
-  author: string;
-  date: string;
-  readTime: string;
-  category: 'Mobile' | 'Web' | 'Animation' | 'Product' | 'Studio';
-  tags: string[];
-  videoUrl?: string;
-  coverImage?: string;
-  relatedProjectSlug?: string;
 }
 
 export interface FAQ {
@@ -102,8 +94,144 @@ export interface ContactFormData {
   name: string;
   email: string;
   company?: string;
-  service: 'App Development' | 'Website / Web App' | 'Animation & Video' | 'Combined Tech + Creative' | 'Other / Unsure';
+  service: string;
   budget?: string;
   timeline?: string;
   message: string;
 }
+
+/* ==========================================================================
+   EXPANSION TYPES (Per docs/enhancement.md)
+   ========================================================================== */
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  status: 'Founder & Principal' | 'Independent Collaborator' | 'Project Contributor';
+  photo: string;
+  bio: string;
+  detailedBio: string[];
+  capabilities: string[];
+  socialLinks: { label: string; url: string }[];
+  keyContributions: { project: string; role: string }[];
+}
+
+export interface LifeEntry {
+  id: string;
+  title: string;
+  category: 'Development Experiment' | 'Animation WIP' | 'Design Exploration' | 'Learning Note' | 'Production Process';
+  date: string;
+  explanation: string;
+  mediaUrl: string;
+  mediaType: 'image' | 'video';
+  caption: string;
+  relatedSlug?: string;
+  relatedType?: 'project' | 'blog' | 'service';
+}
+
+export interface CareerOpening {
+  id: string;
+  slug: string;
+  title: string;
+  department: 'Technology Studio' | 'Creative Studio' | 'General';
+  engagementType: 'Full-time' | 'Contract / Project-based' | 'Collaborator';
+  type?: string;
+  location: string;
+  shortDesc: string;
+  overview?: string;
+  responsibilities: string[];
+  requirements?: string[];
+  requiredSkills: string[];
+  optionalSkills?: string[];
+  experienceRequired?: string;
+  compensation?: string;
+  postedDate?: string;
+  publishable: boolean;
+  applicationInstructions?: string;
+}
+
+export type TechCategory =
+  | 'mobile'
+  | 'mobile-core'
+  | 'web-backend'
+  | 'database-cloud'
+  | 'ai-automation'
+  | 'creative-tools'
+  | 'version-control';
+
+export interface TechnologyItem {
+  id: string;
+  name: string;
+  category: TechCategory;
+  categoryLabel: string;
+  shortDesc: string;
+  whatItIsUsedFor: string;
+  experienceLevel: 'Established Production' | 'Core Discipline' | 'Active Exploration';
+  relatedService: string;
+  relatedServicePath: string;
+  relatedProject?: string;
+  relatedProjectPath?: string;
+  iconName?: string;
+}
+
+export type BlogCategory = 'article' | 'tutorial' | 'breakdown';
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  excerpt: string;
+  content: string[];
+  author: string;
+  authorPhoto?: string;
+  publishedDate: string;
+  updatedDate?: string;
+  readTime: string;
+  type: BlogCategory;
+  typeLabel: 'Article' | 'Tutorial & Guide' | 'Project Breakdown';
+  tags: string[];
+  coverImage: string;
+  tableOfContents?: { id: string; title: string }[];
+  codeSnippets?: { language: string; code: string; caption?: string }[];
+  relatedServices?: { title: string; path: string }[];
+  relatedProjects?: { title: string; path: string }[];
+  publishable: boolean;
+}
+
+export interface DocGuide {
+  id: string;
+  slug: string;
+  title: string;
+  section: 'Mobile Architecture' | 'Creative Pipeline' | 'Web Engineering' | 'Workflow';
+  overview: string;
+  prerequisites: string[];
+  steps: { title: string; instructions: string; codeSnippet?: string; language?: string }[];
+  troubleshooting?: { problem: string; resolution: string }[];
+  version?: string;
+  lastReviewed: string;
+  relatedGuides?: { title: string; slug: string }[];
+  publishable: boolean;
+}
+
+export interface ContactConfig {
+  businessEmail: string;
+  whatsappNumberInternational: string;
+  whatsappDisplayNumber: string;
+  enquiryEndpoint?: string;
+}
+
+export interface Insight {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string[];
+  author: string;
+  date: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  coverImage?: string;
+}
+

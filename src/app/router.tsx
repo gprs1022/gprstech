@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { RootLayout } from '../layouts/RootLayout';
 
 // Loading fallback component
@@ -31,9 +31,27 @@ const WebsitePortfolioPage = lazy(() => import('../pages/portfolio/WebsitePortfo
 const AnimationPortfolioPage = lazy(() => import('../pages/portfolio/AnimationPortfolioPage').then((m) => ({ default: m.AnimationPortfolioPage })));
 const ProjectDetailPage = lazy(() => import('../pages/portfolio/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage })));
 
-const AboutPage = lazy(() => import('../pages/about/AboutPage').then((m) => ({ default: m.AboutPage })));
-const InsightsPage = lazy(() => import('../pages/insights/InsightsPage').then((m) => ({ default: m.InsightsPage })));
-const InsightDetailPage = lazy(() => import('../pages/insights/InsightDetailPage').then((m) => ({ default: m.InsightDetailPage })));
+// About Suite
+const CompanyPage = lazy(() => import('../pages/about/CompanyPage').then((m) => ({ default: m.CompanyPage })));
+const TeamPage = lazy(() => import('../pages/about/TeamPage').then((m) => ({ default: m.TeamPage })));
+const LifePage = lazy(() => import('../pages/about/LifePage').then((m) => ({ default: m.LifePage })));
+
+// Careers Suite
+const CareersPage = lazy(() => import('../pages/careers/CareersPage').then((m) => ({ default: m.CareersPage })));
+const JobDetailPage = lazy(() => import('../pages/careers/JobDetailPage').then((m) => ({ default: m.JobDetailPage })));
+
+// Technologies Suite
+const TechnologiesPage = lazy(() => import('../pages/technologies/TechnologiesPage').then((m) => ({ default: m.TechnologiesPage })));
+
+// Blog Suite
+const BlogListPage = lazy(() => import('../pages/blog/BlogListPage').then((m) => ({ default: m.BlogListPage })));
+const BlogPostPage = lazy(() => import('../pages/blog/BlogPostPage').then((m) => ({ default: m.BlogPostPage })));
+
+// Docs Suite
+const DocsListPage = lazy(() => import('../pages/docs/DocsListPage').then((m) => ({ default: m.DocsListPage })));
+const DocGuidePage = lazy(() => import('../pages/docs/DocGuidePage').then((m) => ({ default: m.DocGuidePage })));
+
+// Contact & Other
 const ContactPage = lazy(() => import('../pages/contact/ContactPage').then((m) => ({ default: m.ContactPage })));
 const PrivacyPage = lazy(() => import('../pages/privacy/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
 const NotFoundPage = lazy(() => import('../pages/notfound/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
@@ -51,6 +69,7 @@ export const router = createBrowserRouter([
           </Suspense>
         )
       },
+      // Services
       {
         path: 'services',
         element: (
@@ -75,6 +94,27 @@ export const router = createBrowserRouter([
           </Suspense>
         )
       },
+      // Individual Service alias redirects or paths
+      {
+        path: 'services/:serviceSlug',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ServicesPage />
+          </Suspense>
+        )
+      },
+
+      // Technologies
+      {
+        path: 'technologies',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <TechnologiesPage />
+          </Suspense>
+        )
+      },
+
+      // Portfolio
       {
         path: 'portfolio',
         element: (
@@ -115,30 +155,124 @@ export const router = createBrowserRouter([
           </Suspense>
         )
       },
+
+      // About Suite
       {
         path: 'about',
+        element: <Navigate to="/about/company" replace />
+      },
+      {
+        path: 'about/company',
         element: (
           <Suspense fallback={<PageLoader />}>
-            <AboutPage />
+            <CompanyPage />
           </Suspense>
         )
       },
       {
-        path: 'insights',
+        path: 'about/team',
         element: (
           <Suspense fallback={<PageLoader />}>
-            <InsightsPage />
+            <TeamPage />
           </Suspense>
         )
+      },
+      {
+        path: 'about/life',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <LifePage />
+          </Suspense>
+        )
+      },
+
+      // Careers Suite
+      {
+        path: 'careers',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <CareersPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'careers/:slug',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <JobDetailPage />
+          </Suspense>
+        )
+      },
+
+      // Blog Suite
+      {
+        path: 'insights',
+        element: <Navigate to="/blog" replace />
       },
       {
         path: 'insights/:slug',
+        element: <Navigate to="/blog" replace />
+      },
+      {
+        path: 'blog',
         element: (
           <Suspense fallback={<PageLoader />}>
-            <InsightDetailPage />
+            <BlogListPage />
           </Suspense>
         )
       },
+      {
+        path: 'blog/articles',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogListPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'blog/tutorials',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogListPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'blog/project-breakdowns',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogListPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'blog/:slug',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BlogPostPage />
+          </Suspense>
+        )
+      },
+
+      // Documentation Suite
+      {
+        path: 'docs',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <DocsListPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'docs/:slug',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <DocGuidePage />
+          </Suspense>
+        )
+      },
+
+      // Contact & Privacy
       {
         path: 'contact',
         element: (
