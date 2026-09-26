@@ -4,6 +4,8 @@ import { SEO } from '../../components/seo/SEO';
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs';
 import { TECHNOLOGIES, TECH_CATEGORIES } from '../../content/technologies';
 import type { TechCategory } from '../../types';
+import { TechLogo } from '../../components/ui/TechLogos';
+import styles from './TechnologiesPage.module.css';
 import {
   Cpu,
   Smartphone,
@@ -15,6 +17,36 @@ import {
   ExternalLink,
   BookOpen
 } from 'lucide-react';
+
+interface ShowcaseTech {
+  id: string;
+  name: string;
+  label: string;
+  category: TechCategory;
+}
+
+// Exactly matches the squircle icons from reference screenshot (Figma, Bootstrap, Express.js, MongoDB, MySQL, Firebase, WordPress, etc.)
+const SQUIRCLE_SHOWCASE: ShowcaseTech[] = [
+  { id: 'figma', name: 'Figma', label: 'Figma', category: 'creative-tools' },
+  { id: 'bootstrap', name: 'Bootstrap', label: 'Bootstrap', category: 'web-backend' },
+  { id: 'express', name: 'Express.js', label: 'Express.js', category: 'web-backend' },
+  { id: 'mongodb', name: 'MongoDB', label: 'MongoDB', category: 'database-cloud' },
+  { id: 'mysql', name: 'MySQL', label: 'MySQL', category: 'database-cloud' },
+  { id: 'firebase', name: 'Firebase', label: 'Firebase', category: 'database-cloud' },
+  { id: 'wordpress', name: 'WordPress', label: 'WordPress', category: 'web-backend' },
+  { id: 'flutter', name: 'Flutter', label: 'Flutter', category: 'mobile-core' },
+  { id: 'react', name: 'React 18 & 19', label: 'React', category: 'web-backend' },
+  { id: 'typescript', name: 'TypeScript', label: 'TypeScript', category: 'web-backend' },
+  { id: 'kotlin', name: 'Kotlin', label: 'Kotlin', category: 'mobile-core' },
+  { id: 'dart', name: 'Dart', label: 'Dart', category: 'mobile-core' },
+  { id: 'android-sdk', name: 'Android SDK & NDK', label: 'Android', category: 'mobile-core' },
+  { id: 'node-js', name: 'Node.js & Express', label: 'Node.js', category: 'web-backend' },
+  { id: 'sqlite', name: 'SQLite & Drift', label: 'SQLite', category: 'database-cloud' },
+  { id: 'blender', name: 'Blender 3D Suite', label: 'Blender 3D', category: 'creative-tools' },
+  { id: 'after-effects', name: 'Adobe After Effects', label: 'After Effects', category: 'creative-tools' },
+  { id: 'premiere-pro', name: 'Adobe Premiere Pro', label: 'Premiere Pro', category: 'creative-tools' },
+  { id: 'git-github', name: 'Git & GitHub Actions', label: 'Git', category: 'version-control' },
+];
 
 export const TechnologiesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,6 +71,15 @@ export const TechnologiesPage: React.FC = () => {
     }
   };
 
+  const handleSquircleClick = (item: ShowcaseTech) => {
+    handleCategoryChange(item.category);
+    // Smooth scroll down to the detailed card if found
+    const targetElement = document.getElementById(`tech-card-${item.id}`);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   const filteredTechnologies = selectedCategory === 'all'
     ? TECHNOLOGIES
     : TECHNOLOGIES.filter((t) => t.category === selectedCategory);
@@ -46,44 +87,71 @@ export const TechnologiesPage: React.FC = () => {
   const getCategoryIcon = (cat: TechCategory) => {
     switch (cat) {
       case 'mobile-core':
-        return <Smartphone size={18} />;
+        return <Smartphone size={15} />;
       case 'web-backend':
-        return <Globe size={18} />;
+        return <Globe size={15} />;
       case 'database-cloud':
-        return <Database size={18} />;
+        return <Database size={15} />;
       case 'creative-tools':
-        return <Film size={18} />;
+        return <Film size={15} />;
       case 'version-control':
-        return <GitBranch size={18} />;
+        return <GitBranch size={15} />;
       default:
-        return <Cpu size={18} />;
+        return <Cpu size={15} />;
     }
   };
 
   return (
-    <div style={{ paddingBottom: '6rem' }}>
+    <div className={styles.techPageContainer}>
       <SEO
-        title="Technologies & Production Stacks — GPRS Tech Studio"
-        description="Explore the battle-tested technologies and tools behind GPRS Tech: Flutter, Dart, Kotlin, React, TypeScript, Blender 3D, After Effects, and SQLite."
+        title="Our Technology Stack & Tooling — GPRS Tech Studio"
+        description="Explore the battle-tested technologies and tools behind GPRS Tech: Figma, Flutter, React, Express, MongoDB, MySQL, Firebase, Blender, and Android."
       />
 
       <div className="container">
         <Breadcrumbs items={[{ label: 'Technologies' }]} />
 
         {/* Hero */}
-        <section style={{ textAlign: 'center', maxWidth: '820px', margin: '2.5rem auto 3.5rem auto' }}>
+        <section className={styles.heroSection}>
           <span className="badge badge-tech">Engineering & Tooling Stack</span>
-          <h1 style={{ fontSize: 'clamp(2.3rem, 4.5vw, 3.6rem)', margin: '1rem 0 1.25rem 0', lineHeight: 1.15 }}>
+          <h1 className={styles.heroTitle}>
             Production-Proven Stacks for <br />
             <span className="text-gradient-brand">Mobile, Web & 3D Motion.</span>
           </h1>
-          <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          <p className={styles.heroSubtitle}>
             We select technologies based on real-world stability, performance ceilings, and long-term maintainability — never fleeting hype cycles.
           </p>
         </section>
 
+        {/* =========================================================
+            OUR TECHNOLOGY STACK — SQUIRCLE ROW SHOWCASE (Benchmark Ref)
+            ========================================================= */}
+        <section className={styles.stackShowcaseSection}>
+          <h2 className={styles.showcaseHeading}>
+            Our <span className={styles.headingTech}>Technology</span> <span className={styles.headingStack}>Stack</span>
+          </h2>
+
+          <div className={styles.squircleRow}>
+            {SQUIRCLE_SHOWCASE.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={styles.squircleItem}
+                onClick={() => handleSquircleClick(item)}
+                title={`Filter by ${item.label} (${item.category})`}
+                aria-label={`Technology ${item.label}`}
+              >
+                <div className={styles.squircleCard}>
+                  <TechLogo name={item.name} size={42} />
+                </div>
+                <span className={styles.squircleLabel}>{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
         {/* Category Filter Chips */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.65rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+        <div className={styles.filterRow}>
           {TECH_CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.id;
             return (
@@ -91,18 +159,7 @@ export const TechnologiesPage: React.FC = () => {
                 key={cat.id}
                 type="button"
                 onClick={() => handleCategoryChange(cat.id)}
-                style={{
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: 'var(--radius-pill)',
-                  fontSize: '0.88rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  border: isActive ? '1px solid var(--color-tech-cyan)' : '1px solid var(--border-subtle)',
-                  background: isActive ? 'rgba(0, 212, 255, 0.15)' : 'var(--bg-surface)',
-                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
-                  boxShadow: isActive ? '0 0 16px rgba(0, 212, 255, 0.25)' : 'none',
-                }}
+                className={`${styles.filterBtn} ${isActive ? styles.filterBtnActive : ''}`}
               >
                 {cat.label}
               </button>
@@ -111,26 +168,26 @@ export const TechnologiesPage: React.FC = () => {
         </div>
 
         {/* Technologies Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.75rem', marginBottom: '5rem' }}>
+        <div className={styles.techGrid}>
           {filteredTechnologies.map((tech) => (
             <div
               key={tech.id}
-              className="surface-card"
-              style={{
-                padding: '2rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, border-color 0.2s ease',
-              }}
+              id={`tech-card-${tech.id}`}
+              className={styles.techCard}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-tech-cyan)' }}>
-                    {getCategoryIcon(tech.category)}
-                    <span style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: 'var(--text-muted)' }}>
-                      {tech.categoryLabel}
-                    </span>
+                {/* Top Row with Squircle Badge & Category */}
+                <div className={styles.cardTopRow}>
+                  <div className={styles.logoAndName}>
+                    <div className={styles.cardLogoSquircle}>
+                      <TechLogo name={tech.name} size={30} />
+                    </div>
+                    <div>
+                      <h3 className={styles.cardTechName}>{tech.name}</h3>
+                      <span className={styles.cardCategoryText}>
+                        {getCategoryIcon(tech.category)} {tech.categoryLabel}
+                      </span>
+                    </div>
                   </div>
                   <span
                     className={
@@ -146,25 +203,24 @@ export const TechnologiesPage: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', color: '#FFFFFF' }}>{tech.name}</h3>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '1rem' }}>
+                <p className={styles.cardDesc}>
                   {tech.shortDesc}
                 </p>
 
-                <div style={{ background: 'var(--bg-surface)', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-creative-green)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block', marginBottom: '0.25rem' }}>
+                <div className={styles.usageBox}>
+                  <span className={styles.usageLabel}>
                     How We Use It
                   </span>
-                  <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                  <p className={styles.usageText}>
                     {tech.whatItIsUsedFor}
                   </p>
                 </div>
               </div>
 
-              <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div className={styles.cardFooter}>
                 <Link
                   to={tech.relatedServicePath}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--color-tech-cyan)', textDecoration: 'none', fontWeight: 600 }}
+                  className={styles.serviceLink}
                 >
                   <span>Service: {tech.relatedService}</span>
                   <ArrowRight size={13} />
@@ -172,7 +228,7 @@ export const TechnologiesPage: React.FC = () => {
                 {tech.relatedProject && tech.relatedProjectPath && (
                   <Link
                     to={tech.relatedProjectPath}
-                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.82rem', color: 'var(--text-muted)', textDecoration: 'none' }}
+                    className={styles.projectLink}
                   >
                     <span>Featured in: {tech.relatedProject}</span>
                     <ExternalLink size={12} />
@@ -184,8 +240,10 @@ export const TechnologiesPage: React.FC = () => {
         </div>
 
         {/* Bottom Documentation & CTA */}
-        <section style={{ textAlign: 'center', padding: '3.5rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)' }}>
-          <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Need Architecture Consultation for Your Stack?</h3>
+        <section className={styles.ctaBox}>
+          <h3 style={{ fontSize: '1.8rem', marginBottom: '1rem', color: '#FFFFFF' }}>
+            Need Architecture Consultation for Your Stack?
+          </h3>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 1.75rem auto' }}>
             Unsure whether Flutter, native Android, or a cross-platform web app makes the most architectural sense for your product timeline? We offer direct founder technical discovery.
           </p>
