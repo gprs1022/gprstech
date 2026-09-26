@@ -108,8 +108,10 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
+  department?: 'Leadership' | 'Engineering' | 'Animation' | 'Motion & Creative' | 'Advisory';
   status: 'Founder & Principal' | 'Independent Collaborator' | 'Project Contributor';
   photo: string;
+  initials?: string;
   bio: string;
   detailedBio: string[];
   capabilities: string[];
