@@ -1,0 +1,385 @@
+.page {
+  padding-bottom: 6rem;
+}
+
+.heroSection {
+  text-align: center;
+  max-width: 860px;
+  margin: 2.5rem auto 5rem auto;
+}
+
+.heroTitle {
+  font-size: clamp(2.3rem, 4.5vw, 3.6rem);
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.heroSub {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+/* Stack Section */
+.techStackSection {
+  margin-bottom: 6rem;
+}
+
+.stackGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.stackCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.stackIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 102, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.accentIconTech {
+  color: var(--color-tech-cyan);
+}
+
+.stackTitle {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  color: #FFFFFF;
+}
+
+.stackDesc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Creative Process Step Grid */
+.processStepGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.processStepCard {
+  padding: 2rem;
+  position: relative;
+}
+
+.stepBadge {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-creative-green);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.processStepCard h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.processStepCard p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Services Grid */
+.servicesListSection {
+  margin-bottom: 6rem;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.iconWrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.techIconWrap {
+  background: rgba(0, 102, 255, 0.15);
+  color: var(--color-tech-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.creativeIconWrap {
+  background: rgba(0, 229, 117, 0.15);
+  color: var(--color-creative-green);
+  border: 1px solid rgba(0, 229, 117, 0.3);
+}
+
+.serviceTitle {
+  font-size: 1.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.serviceFullDesc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.detailBlock {
+  margin-bottom: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.detailLabel {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-tech-cyan);
+  margin-bottom: 0.35rem;
+}
+
+.detailText {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.deliverablesBlock {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  flex: 1;
+}
+
+.deliverablesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.deliverablesList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.techCheck {
+  color: var(--color-tech-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.creativeCheck {
+  color: var(--color-creative-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.techPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.techPill {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Portfolio Teaser */
+.portfolioTeaser {
+  margin-bottom: 6rem;
+}
+
+.projectsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.miniProjectCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.miniCover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.miniBody {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.miniBody h4 {
+  font-size: 1.25rem;
+}
+
+.miniBody p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.miniLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-tech-cyan);
+}
+
+/* Featured Anim Card */
+.featuredAnimCard {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  padding: 0;
+  overflow: hidden;
+}
+
+.animHeroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.animHeroBody {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.animHeroBody h3 {
+  font-size: 1.8rem;
+}
+
+.animHeroBody p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.animActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Studio CTA */
+.studioCta {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.studioCta h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin-bottom: 0.85rem;
+}
+
+.studioCta p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .processStepGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .featuredAnimCard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .processStepGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .heroActions {
+    flex-direction: column;
+  }
+
+  .animActions {
+    flex-direction: column;
+  }
+}
