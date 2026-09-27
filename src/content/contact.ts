@@ -1,9 +1,9 @@
 import type { ContactConfig } from '../types';
 
 export const CONTACT_CONFIG: ContactConfig = {
-  businessEmail: 'contact@gprstech.com',
-  whatsappNumberInternational: '919876543210',
-  whatsappDisplayNumber: '+91 98765 43210',
+  businessEmail: 'gprspradeep@gmail.com',
+  whatsappNumberInternational: '917471178742',
+  whatsappDisplayNumber: '+91 74711 78742',
   enquiryEndpoint: '/api/enquiry',
 };
 

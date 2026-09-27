@@ -1,0 +1,104 @@
+/* ProductSupport.module.css */
+.page { background: var(--bg-primary); min-height: 100vh; padding-bottom: 5rem; }
+
+.header {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 2rem 0; border-bottom: 1px solid var(--border-subtle); margin-bottom: 2.5rem;
+}
+.headerIcon { width: 60px; height: 60px; border-radius: 14px; border: 1px solid var(--border-subtle); flex-shrink: 0; }
+.headerTitle { font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; color: var(--text-primary); margin: 0.35rem 0 0; }
+.headerSub { font-size: 0.93rem; color: var(--text-secondary); margin: 0.3rem 0 0; line-height: 1.5; }
+
+.layout { display: grid; grid-template-columns: 1fr 260px; gap: 3rem; align-items: start; }
+.main { display: flex; flex-direction: column; gap: 3rem; }
+
+.sectionTitle {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700;
+  color: var(--text-primary); margin: 0 0 1.25rem;
+  padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-subtle);
+}
+
+/* FAQ */
+.faqList { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.faqItem {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); overflow: hidden;
+  transition: border-color var(--transition-normal);
+}
+
+.faqItemOpen { border-color: var(--border-tech); }
+
+.faqQuestion {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  gap: 0.75rem; padding: 1rem 1.25rem;
+  background: none; border: none; cursor: pointer;
+  text-align: left; font-family: var(--font-body); font-size: 0.93rem;
+  font-weight: 600; color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.faqItem:hover .faqQuestion { color: var(--color-tech-cyan); }
+
+.faqChevron { flex-shrink: 0; color: var(--text-muted); transition: transform var(--transition-normal); }
+.faqChevronOpen { transform: rotate(180deg); }
+
+.faqAnswer { padding: 0 1.25rem 1rem; }
+.faqAnswer p { margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+
+/* Contact */
+.contactIntro { font-size: 0.93rem; color: var(--text-secondary); line-height: 1.7; margin: 0 0 1.5rem; }
+
+.contactCards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.contactCard {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
+  text-decoration: none; transition: all var(--transition-normal);
+}
+.contactCard:hover { border-color: var(--border-tech); background: var(--bg-card-hover); transform: translateY(-2px); }
+.contactCardWhatsapp:hover { border-color: rgba(0, 229, 117, 0.4); }
+
+.contactCardIcon {
+  width: 44px; height: 44px; border-radius: var(--radius-md);
+  background: rgba(0, 102, 255, 0.12); border: 1px solid var(--border-tech);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-tech-blue); flex-shrink: 0;
+}
+.contactCardIconWa { background: rgba(0, 229, 117, 0.12); border-color: rgba(0, 229, 117, 0.3); color: var(--color-creative-green); }
+
+.contactCard h3 { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.2rem; }
+.contactCard p { font-size: 0.82rem; color: var(--text-secondary); margin: 0 0 0.35rem; line-height: 1.4; }
+.contactCardLink { font-size: 0.8rem; font-weight: 600; color: var(--color-tech-cyan); }
+
+.reportNote {
+  margin-top: 1.5rem; padding: 1rem 1.25rem;
+  background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+}
+.reportNote strong { font-size: 0.88rem; color: var(--text-primary); display: block; margin-bottom: 0.5rem; }
+.reportNote ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+.reportNote li { font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.1rem; position: relative; }
+.reportNote li::before { content: '•'; position: absolute; left: 0; color: var(--color-tech-cyan); }
+
+/* Sidebar */
+.sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: calc(var(--header-height) + 1.5rem); }
+.sideCard { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.sideCardTitle {
+  font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700;
+  color: var(--text-primary); margin: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-subtle);
+}
+.quickLinks { display: flex; flex-direction: column; gap: 0.3rem; }
+.quickLink { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.84rem; color: var(--text-secondary); text-decoration: none; padding: 0.3rem 0; transition: color var(--transition-fast); }
+.quickLink:hover { color: var(--color-tech-cyan); }
+.emailLink { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.84rem; color: var(--color-tech-cyan); text-decoration: none; }
+.emailLink:hover { text-decoration: underline; }
+.responseNote { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
+
+/* Responsive */
+@media (max-width: 1024px) { .layout { grid-template-columns: 1fr; } .sidebar { position: static; } }
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 0.75rem; }
+  .contactCards { grid-template-columns: 1fr; }
+}

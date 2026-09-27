@@ -1,0 +1,645 @@
+/* ============================================================
+   ProductDetail.module.css — Product Detail Page
+   ============================================================ */
+
+.page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+/* ── App Header ───────────────────────────────────────────── */
+.appHeader {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.appIconWrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 22px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.appIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.appMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.appMetaTop {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.7rem;
+  border-radius: var(--radius-full);
+}
+
+.statusLive { background: rgba(0,229,117,.15); color: var(--color-creative-green); border: 1px solid rgba(0,229,117,.3); }
+.statusBeta { background: rgba(0,212,255,.12); color: var(--color-tech-cyan); border: 1px solid rgba(0,212,255,.3); }
+.statusSoon { background: rgba(163,230,53,.12); color: var(--color-creative-lime); border: 1px solid rgba(163,230,53,.3); }
+.statusDiscontinued { background: rgba(148,163,184,.1); color: var(--text-muted); border: 1px solid var(--border-subtle); }
+
+.coppaBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.22rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 229, 117, 0.12);
+  color: var(--color-creative-green);
+  border: 1px solid rgba(0, 229, 117, 0.3);
+}
+
+.appName {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.appTagline {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.appPlatforms {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.platformTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border-subtle);
+  padding: 0.22rem 0.7rem;
+  border-radius: var(--radius-full);
+}
+
+/* Store Buttons */
+.storeButtons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.storeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: all var(--transition-normal);
+  border: 1px solid transparent;
+}
+
+.storeBtnPlay {
+  background: var(--color-tech-blue);
+  color: #fff;
+}
+
+.storeBtnPlay:hover {
+  background: var(--color-tech-blue-hover);
+  box-shadow: var(--shadow-glow-tech);
+}
+
+.storeBtnApple {
+  background: #1c1c1e;
+  color: #fff;
+  border-color: var(--border-subtle);
+}
+
+.storeBtnApple:hover {
+  background: #2c2c2e;
+}
+
+.storeBtnText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.storeBtnText small {
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.storeBtnText {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ── Content Grid ─────────────────────────────────────────── */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  padding-top: 3rem;
+  align-items: start;
+}
+
+/* ── Main Column ──────────────────────────────────────────── */
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Screenshot Carousel */
+.carouselSection {}
+
+.carousel {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+.carouselTrack {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 360px;
+  max-height: 540px;
+  overflow: hidden;
+  background: #040711;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselBgBlur {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  filter: blur(32px) brightness(0.24) saturate(1.4);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.carouselImg {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  transition: opacity var(--transition-fast);
+}
+
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-medium);
+  background: rgba(7, 11, 20, 0.8);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  z-index: 2;
+}
+
+.carouselBtn:hover {
+  background: var(--color-tech-blue);
+  border-color: var(--color-tech-blue);
+}
+
+.carouselBtnPrev { left: 0.75rem; }
+.carouselBtnNext { right: 0.75rem; }
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem 0.5rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--color-tech-cyan);
+  width: 20px;
+  border-radius: 4px;
+}
+
+.thumbStrip {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  transition: border-color var(--transition-fast);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbActive {
+  border-color: var(--color-tech-cyan);
+}
+
+/* Feature graphic */
+.featureGraphicWrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #040711;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featureGraphic {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Content Blocks */
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blockHeading {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bodyText {
+  font-size: 0.97rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.featureCheck {
+  color: var(--color-creative-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Video Embed */
+.videoWrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.videoWrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+
+.sideCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+.sideCardTitle {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.infoRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.83rem;
+}
+
+.infoKey {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.infoVal {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Quick links */
+.quickLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.quickLink {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: rgba(255,255,255,.02);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+}
+
+.quickLink:hover {
+  border-color: var(--border-tech);
+  color: var(--color-tech-cyan);
+  background: rgba(0,212,255,.06);
+}
+
+.quickLinkArrow {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+/* COPPA side card */
+.coppaSideCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: rgba(0, 229, 117, 0.06) !important;
+  border: 1px solid rgba(0, 229, 117, 0.25) !important;
+}
+
+.coppaShield {
+  color: var(--color-creative-green);
+  flex-shrink: 0;
+}
+
+.coppaTitle {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-creative-green);
+  margin: 0 0 0.25rem;
+}
+
+.coppaDesc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA side card */
+.ctaSideCard {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ctaSideCard h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.ctaSideCard p {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Related Products ─────────────────────────────────────── */
+.relatedSection {
+  padding-top: 4rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 3rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.relatedCard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+}
+
+.relatedCard:hover {
+  border-color: var(--border-tech);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.relatedIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.relatedBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.relatedBody h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.relatedBody p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.relatedCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-tech-cyan);
+  margin-top: 0.25rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .appHeader {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .appIconWrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+  }
+
+  .storeButtons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .storeBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .carouselTrack {
+    min-height: 240px;
+  }
+}

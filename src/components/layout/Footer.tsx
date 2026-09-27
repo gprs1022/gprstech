@@ -113,6 +113,9 @@ export const Footer: React.FC = () => {
               <Link to="/portfolio/animation">Animation Portfolio</Link>
             </li>
             <li>
+              <Link to="/products">Our Products</Link>
+            </li>
+            <li>
               <Link to="/portfolio/mythos-folklore">Mythos: Echoes of Bharat</Link>
             </li>
             <li>

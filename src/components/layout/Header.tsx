@@ -207,7 +207,16 @@ export const Header: React.FC = () => {
                   </div>
                   <div>
                     <span className={styles.dropdownItemTitle}>Animation Portfolio</span>
-                    <span className={styles.dropdownItemDesc}>Character animation, 3D & reels</span>
+                    <span className={styles.dropdownItemDesc}>Character animation, 3D &amp; reels</span>
+                  </div>
+                </Link>
+                <Link to="/products" className={styles.dropdownItem} role="menuitem">
+                  <div className={`${styles.iconWrap} ${styles.techIcon}`}>
+                    <Layers size={16} />
+                  </div>
+                  <div>
+                    <span className={styles.dropdownItemTitle}>Our Products</span>
+                    <span className={styles.dropdownItemDesc}>Apps &amp; games published by GPRS Tech</span>
                   </div>
                 </Link>
                 <div className={styles.dropdownDivider} />
@@ -386,6 +395,9 @@ export const Header: React.FC = () => {
               </Link>
               <Link to="/portfolio/animation" className={styles.mobileSubLink}>
                 <Film size={16} /> Animation Portfolio
+              </Link>
+              <Link to="/products" className={styles.mobileSubLink}>
+                <Layers size={16} /> Our Products
               </Link>
             </div>
 

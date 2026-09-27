@@ -51,6 +51,12 @@ const BlogPostPage = lazy(() => import('../pages/blog/BlogPostPage').then((m) =>
 const DocsListPage = lazy(() => import('../pages/docs/DocsListPage').then((m) => ({ default: m.DocsListPage })));
 const DocGuidePage = lazy(() => import('../pages/docs/DocGuidePage').then((m) => ({ default: m.DocGuidePage })));
 
+// Products Suite
+const ProductsPage = lazy(() => import('../pages/products/ProductsPage').then((m) => ({ default: m.ProductsPage })));
+const ProductDetail = lazy(() => import('../pages/products/ProductDetail').then((m) => ({ default: m.ProductDetail })));
+const ProductPrivacy = lazy(() => import('../pages/products/ProductPrivacy').then((m) => ({ default: m.ProductPrivacy })));
+const ProductSupport = lazy(() => import('../pages/products/ProductSupport').then((m) => ({ default: m.ProductSupport })));
+
 // Contact & Other
 const ContactPage = lazy(() => import('../pages/contact/ContactPage').then((m) => ({ default: m.ContactPage })));
 const PrivacyPage = lazy(() => import('../pages/privacy/PrivacyPage').then((m) => ({ default: m.PrivacyPage })));
@@ -268,6 +274,40 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <DocGuidePage />
+          </Suspense>
+        )
+      },
+
+      // Products Suite
+      {
+        path: 'products',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductsPage />
+          </Suspense>
+        )
+      },
+      {
+        path: 'products/:slug',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductDetail />
+          </Suspense>
+        )
+      },
+      {
+        path: 'products/:slug/privacy',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductPrivacy />
+          </Suspense>
+        )
+      },
+      {
+        path: 'products/:slug/support',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductSupport />
           </Suspense>
         )
       },
